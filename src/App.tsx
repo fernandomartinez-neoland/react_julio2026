@@ -1,14 +1,25 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from "react";
+import heroImg from "./assets/hero.png";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import "./App.css";
+import FrameColor from "./components/color";
+
+function consola() {
+  console.log("esta es una funcion");
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const nombre = "pepito";
 
   return (
     <>
+      {/* asi se importan variables en el return  */}
+      <h1>{nombre}</h1>
+      {/* Se pasan como props con nombre, NO como children.
+          1er prop: el valor. 2do prop: el setter para alterar el estado de App. */}
+      <FrameColor numero={count} setterNumero={setCount} />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -24,7 +35,11 @@ function App() {
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => {
+            setCount((count) => count + 5);
+            // asi se importan y se usan funciones dentro del return de react
+            consola();
+          }}
         >
           Count is {count}
         </button>
@@ -116,7 +131,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
