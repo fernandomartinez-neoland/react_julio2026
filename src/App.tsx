@@ -4,8 +4,11 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import "./App.css";
 import FrameColor from "./components/color";
+import { consolaService } from "./services/consola.service";
+import { Link, Links, Outlet } from "react-router";
 
 function consola() {
+  consolaService()
   console.log("esta es una funcion");
 }
 
@@ -15,8 +18,11 @@ function App() {
 
   return (
     <>
+    <Link to="/hijo">Hijo</Link>
+
       {/* asi se importan variables en el return  */}
       <h1>{nombre}</h1>
+      <Outlet/>
       {/* Se pasan como props con nombre, NO como children.
           1er prop: el valor. 2do prop: el setter para alterar el estado de App. */}
       <FrameColor numero={count} setterNumero={setCount} />
@@ -39,6 +45,7 @@ function App() {
             setCount((count) => count + 5);
             // asi se importan y se usan funciones dentro del return de react
             consola();
+            consolaService()
           }}
         >
           Count is {count}
